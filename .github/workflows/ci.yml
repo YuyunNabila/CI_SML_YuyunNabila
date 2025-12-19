@@ -2,7 +2,9 @@ name: CI Machine Learning
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,23 +17,17 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.12"
-
-    - name: Check Env
-      run: python --version
+        python-version: '3.12'
 
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
-        pip install mlflow
+        python -m pip install --upgrade pip
         pip install -r MLproject/requirements.txt
+        pip install mlflow
 
     - name: Set MLflow Tracking URI
-      run: |
-        export MLFLOW_TRACKING_URI=./mlruns
+      run: echo "MLFLOW_TRACKING_URI=mlruns" >> $GITHUB_ENV
 
     - name: Run MLflow Project
       run: |
-        pip install mlflow
         mlflow run MLproject --env-manager=local
-
