@@ -32,5 +32,6 @@ jobs:
 
     - name: Run MLflow Project
       run: |
-        cd MLproject
-        mlflow run .
+        pip install mlflow
+        mlflow run MLproject --env-manager=local
+
