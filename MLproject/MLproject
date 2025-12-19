@@ -1,6 +1,4 @@
-name: student-performance-mlops
-
-conda_env: conda.yaml
+name: student-performance-ci
 
 entry_points:
   main:
