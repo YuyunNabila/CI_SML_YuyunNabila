@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.metrics import mean_squared_error, r2_score
 # CONFIG MLFLOW
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+
 mlflow.set_experiment("Student Performance Modelling")
 
 # LOAD DATA
