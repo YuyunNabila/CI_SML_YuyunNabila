@@ -3,7 +3,6 @@ name: CI Machine Learning
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
 
 jobs:
   build:
@@ -11,17 +10,25 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.12'
+        python-version: "3.12"
+
+    - name: Check Env
+      run: python --version
 
     - name: Install dependencies
       run: |
         pip install --upgrade pip
+        pip install mlflow
         pip install -r MLproject/requirements.txt
+
+    - name: Set MLflow Tracking URI
+      run: |
+        export MLFLOW_TRACKING_URI=./mlruns
 
     - name: Run MLflow Project
       run: |
