@@ -28,4 +28,5 @@ jobs:
 
       - name: Run ML pipeline
         run: |
+          cd MLproject
           python modelling.py
